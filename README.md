@@ -240,9 +240,15 @@ This design is **defensible, auditable, and space-compatible**.
 
 **EPS Guardian** demonstrates that hybrid AI-based supervision can be deployed on constrained embedded hardware while preserving **safety**, **transparency**, and **scientific rigor**.
 
-## Citation
+## Maintainer
 
-If you use this work in academic research, please cite:
+**Bouchehioua Yasmine**  
+3rd Year Computer Science Student — Big Data Specialization  
+Higher Institute of Computer Science and Multimedia of Sfax (ISIMS)  
 
-EPS Guardian – Hybrid AI-Based EPS Anomaly Surveillance for CubeSats  
-IEEE AESS & IES Challenge 2025
+Email: [yasmine.bouchhiwa@isimsf.u-sfax.tn](mailto:yasmine.bouchhiwa@isimsf.u-sfax.tn)  
+GitHub: https://github.com/Yesmin8  
+
+---
+
+**Supported by:** IEEE **AESS & IES Challenge 2025**
