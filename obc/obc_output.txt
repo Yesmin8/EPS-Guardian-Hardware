@@ -1,0 +1,1770 @@
+Python 3.9.13 (tags/v3.9.13:6de2ca5, May 17 2022, 16:36:42) [MSC v.1929 64 bit (AMD64)] on win32
+Type "help", "copyright", "credits" or "license()" for more information.
+>>> 
+=============== RESTART: D:\EPS-Guardian-Hardware\obc\obc_main.py ==============
+
+ ENTREE ETAT: BOOT
+   Description: Démarrage système
+   Transitions autorisées: WAITING_MCU
+
+======================================================================
+ OBC PROFESSIONNEL - EPS GUARDIAN
+======================================================================
+Architecture modulaire avec RL Advisor
+Attente patiente du MCU - Pas de timeout fatal
+Support CSV et JSON
+======================================================================
+
+======================================================================
+ OBC PROFESSIONNEL - DÉMARRAGE
+======================================================================
+
+ RÈGLES ARCHITECTURALES:
+   1. L'OBC attend le MCU, pas l'inverse
+   2. Pas de timeout fatal
+   3. Lecture passive pendant l'attente
+   4. Activation progressive après premier contact
+   5. Le MCU est autonome (R1-R3 appliquées au boot)
+
+ FORMATS SUPPORTÉS:
+   • CSV: index,mode,mse_mcu,level,reason,...
+   • JSON: {"state":"NORMAL","features":[...],"mse":0.1}
+
+🔌 Connexion série: COM6...
+    Tentative 1/3...
+    Connecté à COM6
+
+ TRANSITION OBC: BOOT → WAITING_MCU
+    En attente du MCU...
+    Règles appliquées:
+      • Pas de timeout fatal
+      • Lecture série passive
+      • Aucune décision prise
+      • IA inactive
+      • RL désactivé
+
+🔧 Initialisation modules (mode passif)...
+   Modèle chargé: models\ai_model_lstm_autoencoder.h5
+   Scaler chargé (joblib): models\ai_sequence_scaler.pkl
+   IA initialisée: models\ai_model_lstm_autoencoder.h5
+   Séquence: 30 steps
+   Features: 7
+  Fichier de config RL non trouvé, utilisation des valeurs par défaut
+ Couche RL initialisée (Mode ADVISOR)
+   Actions disponibles: 8
+   Sécurité: Activée
+   Phase mission: ORBITAL
+ RL: Phase mission changée → ORBITAL
+    RL: Initialisé (mode passif)
+    Modules déterministes: Prêts
+
+📡 OBC EN ATTENTE DU MCU...
+   - MCU: Autonome, démarre ses propres règles
+   - OBC: Observateur passif, prêt à recevoir
+   - Attente: Illimitée (pas de timeout)
+   - Premier message: Déclenchera l'activation
+
+======================================================================
+ DÉMARRAGE BOUCLE PRINCIPALE
+======================================================================
+
+ ÉTAT INITIAL:
+   OBC: WAITING_MCU
+   MCU: EN ATTENTE
+   Mode: RÉEL
+   RL: ACTIF
+
+----------------------------------------------------------------------
+Mode attente MCU actif... (Ctrl+C pour arrêter)
+----------------------------------------------------------------------
+
+DEBUG RAW [1]: '14,DEMO,0.0878,0,NONE,0,6.65,0.362,0.298,2.73,2.47,0,0'
+DEBUG CSV PARSED: state=NORMAL, mse=0.088
+
+======================================================================
+ PREMIER CONTACT MCU ÉTABLI
+======================================================================
+
+ Message reçu après 0.7s
+   État MCU: NORMAL
+   MSE MCU: 0.0878
+   Features: 7 valeurs
+
+ Statistiques d'attente:
+   Lignes lues: 1
+   Bytes reçus: 56
+   Messages invalides: 0
+
+ Activation des modules OBC...
+    IA: Active
+    RL: Mode advisor activé
+    Modules déterministes: Actifs
+
+ OBC PRÊT À FONCTIONNER
+
+ TRANSITION OBC: WAITING_MCU → IDLE
+    Système prêt - Attente nouvelle alerte
+DEBUG RAW [2]: '17,DEMO,0.1132,0,NONE,0,6.65,0.360,0.297,2.74,2.46,0,0'
+DEBUG CSV PARSED: state=NORMAL, mse=0.113
+DEBUG RAW [3]: '20,DEMO,0.1179,0,NONE,0,6.88,0.364,0.296,2.84,2.56,0,0'
+DEBUG CSV PARSED: state=NORMAL, mse=0.118
+DEBUG RAW [4]: '23,DEMO,0.1052,0,NONE,0,6.88,0.363,0.294,2.84,2.56,0,0'
+DEBUG CSV PARSED: state=NORMAL, mse=0.105
+DEBUG RAW [5]: '26,DEMO,0.0974,0,NONE,0,6.88,0.359,0.292,2.82,2.53,0,0'
+
+----------------------------------------------------------------------
+ STATUT SYSTEME - 01:28:43
+----------------------------------------------------------------------
+
+ ÉTAT OBC:
+   IDLE
+
+  TEMPS:
+   Uptime: 00:00:35
+
+ PERFORMANCE:
+   Messages: 15
+   Alertes: 0
+   Temps moyen: 0.0ms
+
+ DÉCISIONS:
+   Confirmées: 0.0%
+   Faux positifs: 0.0%
+   Critiques: 0
+
+ RL ADVISOR:
+   États appris: 0
+   Expériences: 0
+   Suggestions utilisées: 0
+
+ ÉTAT SYSTÈME:
+   BOOT (36s)
+
+ IA:
+   Buffer: 30/30
+   Statut: PRÊT
+
+ VERROU:
+   INACTIF
+
+🔌 CONNEXION:
+   MCU: Connecté (depuis 30.3s)
+
+----------------------------------------------------------------------
+
+
+----------------------------------------------------------------------
+ STATUT SYSTEME - 01:29:13
+----------------------------------------------------------------------
+
+ ÉTAT OBC:
+   IDLE
+
+  TEMPS:
+   Uptime: 00:01:05
+
+ PERFORMANCE:
+   Messages: 30
+   Alertes: 0
+   Temps moyen: 0.0ms
+
+ DÉCISIONS:
+   Confirmées: 0.0%
+   Faux positifs: 0.0%
+   Critiques: 0
+
+ RL ADVISOR:
+   États appris: 0
+   Expériences: 0
+   Suggestions utilisées: 0
+
+ ÉTAT SYSTÈME:
+   BOOT (66s)
+
+ IA:
+   Buffer: 30/30
+   Statut: PRÊT
+
+ VERROU:
+   INACTIF
+
+🔌 CONNEXION:
+   MCU: Connecté (depuis 60.2s)
+
+----------------------------------------------------------------------
+
+
+----------------------------------------------------------------------
+ STATUT SYSTEME - 01:29:43
+----------------------------------------------------------------------
+
+ ÉTAT OBC:
+   IDLE
+
+  TEMPS:
+   Uptime: 00:01:35
+
+ PERFORMANCE:
+   Messages: 58
+   Alertes: 0
+   Temps moyen: 0.0ms
+
+ DÉCISIONS:
+   Confirmées: 0.0%
+   Faux positifs: 0.0%
+   Critiques: 0
+
+ RL ADVISOR:
+   États appris: 0
+   Expériences: 0
+   Suggestions utilisées: 0
+
+ ÉTAT SYSTÈME:
+   BOOT (96s)
+
+ IA:
+   Buffer: 30/30
+   Statut: PRÊT
+
+ VERROU:
+   INACTIF
+
+🔌 CONNEXION:
+   MCU: Connecté (depuis 90.3s)
+
+----------------------------------------------------------------------
+
+
+==================================================
+ ALERTE MCU DETECTEE - OBC State: IDLE
+==================================================
+
+01:29:48
+État MCU: CRITICAL
+MSE MCU: 0.1005
+
+ TRANSITION OBC: IDLE → ACCUMULATING
+    Début accumulation épisode
+
+ DÉBUT ÉPISODE: CRITICAL
+   Buffer: 1/30
+     CRITICAL en cours - Ignore NORMAL isolé
+     CRITICAL en cours - Ignore NORMAL isolé
+     CRITICAL en cours - Ignore NORMAL isolé
+
+==================================================
+ ALERTE MCU DETECTEE - OBC State: ACCUMULATING
+==================================================
+
+01:30:01
+État MCU: CRITICAL
+MSE MCU: 0.0914
+
+   ACCUMULATION: 2/30
+
+==================================================
+ ALERTE MCU DETECTEE - OBC State: ACCUMULATING
+==================================================
+
+01:30:04
+État MCU: CRITICAL
+MSE MCU: 0.0903
+
+   ACCUMULATION: 3/30
+
+==================================================
+ ALERTE MCU DETECTEE - OBC State: ACCUMULATING
+==================================================
+
+01:30:07
+État MCU: CRITICAL
+MSE MCU: 0.0911
+
+   ACCUMULATION: 4/30
+
+==================================================
+ ALERTE MCU DETECTEE - OBC State: ACCUMULATING
+==================================================
+
+01:30:11
+État MCU: CRITICAL
+MSE MCU: 0.0888
+
+   ACCUMULATION: 5/30
+
+==================================================
+ ALERTE MCU DETECTEE - OBC State: ACCUMULATING
+==================================================
+
+01:30:14
+État MCU: CRITICAL
+MSE MCU: 0.0890
+
+   ACCUMULATION: 6/30
+
+==================================================
+ ALERTE MCU DETECTEE - OBC State: ACCUMULATING
+==================================================
+
+01:30:18
+État MCU: CRITICAL
+MSE MCU: 0.0914
+
+   ACCUMULATION: 7/30
+
+==================================================
+ ALERTE MCU DETECTEE - OBC State: ACCUMULATING
+==================================================
+
+01:30:21
+État MCU: CRITICAL
+MSE MCU: 0.0889
+
+   ACCUMULATION: 8/30
+
+==================================================
+ ALERTE MCU DETECTEE - OBC State: ACCUMULATING
+==================================================
+
+01:30:24
+État MCU: CRITICAL
+MSE MCU: 0.0906
+
+   ACCUMULATION: 9/30
+
+==================================================
+ ALERTE MCU DETECTEE - OBC State: ACCUMULATING
+==================================================
+
+01:30:28
+État MCU: CRITICAL
+MSE MCU: 0.0838
+
+   ACCUMULATION: 10/30
+
+==================================================
+ ALERTE MCU DETECTEE - OBC State: ACCUMULATING
+==================================================
+
+01:30:31
+État MCU: CRITICAL
+MSE MCU: 0.0838
+
+   ACCUMULATION: 11/30
+
+==================================================
+ ALERTE MCU DETECTEE - OBC State: ACCUMULATING
+==================================================
+
+01:30:34
+État MCU: CRITICAL
+MSE MCU: 0.0797
+
+   ACCUMULATION: 12/30
+
+==================================================
+ ALERTE MCU DETECTEE - OBC State: ACCUMULATING
+==================================================
+
+01:30:38
+État MCU: CRITICAL
+MSE MCU: 0.0793
+
+   ACCUMULATION: 13/30
+
+==================================================
+ ALERTE MCU DETECTEE - OBC State: ACCUMULATING
+==================================================
+
+01:30:41
+État MCU: CRITICAL
+MSE MCU: 0.0751
+
+   ACCUMULATION: 14/30
+
+==================================================
+ ALERTE MCU DETECTEE - OBC State: ACCUMULATING
+==================================================
+
+01:30:45
+État MCU: CRITICAL
+MSE MCU: 0.0796
+
+   ACCUMULATION: 15/30
+
+==================================================
+ ALERTE MCU DETECTEE - OBC State: ACCUMULATING
+==================================================
+
+01:30:48
+État MCU: CRITICAL
+MSE MCU: 0.0834
+
+   ACCUMULATION: 16/30
+
+==================================================
+ ALERTE MCU DETECTEE - OBC State: ACCUMULATING
+==================================================
+
+01:30:51
+État MCU: CRITICAL
+MSE MCU: 0.0784
+
+   ACCUMULATION: 17/30
+
+==================================================
+ ALERTE MCU DETECTEE - OBC State: ACCUMULATING
+==================================================
+
+01:30:55
+État MCU: CRITICAL
+MSE MCU: 0.0790
+
+   ACCUMULATION: 18/30
+
+==================================================
+ ALERTE MCU DETECTEE - OBC State: ACCUMULATING
+==================================================
+
+01:30:58
+État MCU: CRITICAL
+MSE MCU: 0.0829
+
+   ACCUMULATION: 19/30
+
+==================================================
+ ALERTE MCU DETECTEE - OBC State: ACCUMULATING
+==================================================
+
+01:31:01
+État MCU: CRITICAL
+MSE MCU: 0.0879
+
+   ACCUMULATION: 20/30
+
+==================================================
+ ALERTE MCU DETECTEE - OBC State: ACCUMULATING
+==================================================
+
+01:31:05
+État MCU: CRITICAL
+MSE MCU: 0.0874
+
+   ACCUMULATION: 21/30
+
+==================================================
+ ALERTE MCU DETECTEE - OBC State: ACCUMULATING
+==================================================
+
+01:31:08
+État MCU: CRITICAL
+MSE MCU: 0.0914
+
+   ACCUMULATION: 22/30
+
+==================================================
+ ALERTE MCU DETECTEE - OBC State: ACCUMULATING
+==================================================
+
+01:31:12
+État MCU: CRITICAL
+MSE MCU: 0.0914
+
+   ACCUMULATION: 23/30
+
+==================================================
+ ALERTE MCU DETECTEE - OBC State: ACCUMULATING
+==================================================
+
+01:31:15
+État MCU: CRITICAL
+MSE MCU: 0.0832
+
+   ACCUMULATION: 24/30
+
+==================================================
+ ALERTE MCU DETECTEE - OBC State: ACCUMULATING
+==================================================
+
+01:31:18
+État MCU: CRITICAL
+MSE MCU: 0.0777
+
+   ACCUMULATION: 25/30
+
+==================================================
+ ALERTE MCU DETECTEE - OBC State: ACCUMULATING
+==================================================
+
+01:31:22
+État MCU: CRITICAL
+MSE MCU: 0.0787
+
+   ACCUMULATION: 26/30
+
+==================================================
+ ALERTE MCU DETECTEE - OBC State: ACCUMULATING
+==================================================
+
+01:31:25
+État MCU: CRITICAL
+MSE MCU: 0.0795
+
+   ACCUMULATION: 27/30
+
+==================================================
+ ALERTE MCU DETECTEE - OBC State: ACCUMULATING
+==================================================
+
+01:31:28
+État MCU: CRITICAL
+MSE MCU: 0.0799
+
+   ACCUMULATION: 28/30
+
+==================================================
+ ALERTE MCU DETECTEE - OBC State: ACCUMULATING
+==================================================
+
+01:31:32
+État MCU: CRITICAL
+MSE MCU: 0.0844
+
+   ACCUMULATION: 29/30
+
+==================================================
+ ALERTE MCU DETECTEE - OBC State: ACCUMULATING
+==================================================
+
+01:31:35
+État MCU: CRITICAL
+MSE MCU: 0.0852
+
+   ACCUMULATION: 30/30
+
+ TRANSITION OBC: ACCUMULATING → ANALYZING
+    Analyse de l'épisode en cours
+
+ ANALYSE ÉPISODE (30 échantillons)
+
+🤖 ANALYSE OBC (LSTM Autoencoder)...
+   Valeurs moyennes sur l'épisode:
+     v_batt  :   6.16 V
+     i_batt  :   0.36 A
+     t_batt  :  23.21 °C
+     v_solar :  16.00 V
+     i_solar :   1.20 A
+     v_bus   :   2.54 V
+     i_load  :   2.29 A
+
+   MSE OBC: 205.1758
+   Seuil CRITICAL: 1.0665
+   Ratio MSE/Seuil: 192.4x
+   État OBC: CRITICAL
+
+ TRANSITION OBC: ANALYZING → DECIDING
+    Prise de décision en cours
+
+ DÉCISION ÉPISODE
+   Type défaut: BUS_OVERLOAD
+   Confiance: 90.00%
+
+    Suggestions RL (sûres):
+     1. MONITOR (confiance: 50.0%)
+
+    Décision finale: CRITICAL_RULE_R2
+
+======================================================================
+ RESUME DECISION
+======================================================================
+
+ DIAGNOSTIC FINAL:
+   Severite:        CRITICAL
+   Type defaut:     BUS_OVERLOAD
+   Confiance:       90.00%
+   Etat systeme:    CRITICAL
+   Type decision:   CRITICAL_RULE_R2
+
+ INDICATEURS CLES:
+   Vbatt: 6.04 V | Ibatt: 0.361 A | Tbatt: 23.2 °C
+   Pbatt: 2.18 W | Psolar: 19.200 W
+
+ SUGGESTIONS RL DISPONIBLES:
+     MONITOR                   (confiance: 50.0%)
+
+ ACTIONS PLANIFIEES:
+   1. SWITCH_TO_BATTERY (Prio: 9/10)
+      -> Basculer sur alimentation batterie
+   2. POWER_SAVING_MODE (Prio: 8/10)
+      -> Réduction consommation énergie
+
+ CONTEXTE SYSTEME:
+   Etat actuel:    BOOT
+   Duree etat:     209.5s
+   Phase mission:  ORBITAL
+
+======================================================================
+
+ EXECUTION ACTIONS...
+    Action exécutée: SWITCH_TO_BATTERY
+      Basculer sur alimentation batterie
+    Commande envoyée au MCU: SWITCH_TO_BATTERY
+    SWITCH_TO_BATTERY → MCU
+    RL: Action non sûre (SOC trop bas (5.0% < 25.0%)) - Expérience ignorée
+    Action exécutée: POWER_SAVING_MODE
+      Réduction consommation énergie
+    Commande envoyée au MCU: POWER_SAVING_MODE
+    POWER_SAVING_MODE → MCU
+    RL: Action non sûre (SOC trop bas (5.0% < 25.0%)) - Expérience ignorée
+
+ TRANSITION OBC: DECIDING → RECOVERY_MONITORING
+
+ DÉBUT RECOVERY MONITORING
+   Timeout: 300s
+   Stable threshold: 5 messages
+
+==================================================
+ ALERTE MCU DETECTEE - OBC State: RECOVERY_MONITORING
+==================================================
+
+01:31:38
+État MCU: CRITICAL
+MSE MCU: 0.0850
+
+ RECOVERY MONITORING
+   Alerte reçue pendant monitoring
+
+==================================================
+ ALERTE MCU DETECTEE - OBC State: RECOVERY_MONITORING
+==================================================
+
+01:31:42
+État MCU: CRITICAL
+MSE MCU: 0.0893
+
+ RECOVERY MONITORING
+   Alerte reçue pendant monitoring
+
+==================================================
+ ALERTE MCU DETECTEE - OBC State: RECOVERY_MONITORING
+==================================================
+
+01:31:45
+État MCU: CRITICAL
+MSE MCU: 0.0888
+
+ RECOVERY MONITORING
+   Alerte reçue pendant monitoring
+
+==================================================
+ ALERTE MCU DETECTEE - OBC State: RECOVERY_MONITORING
+==================================================
+
+01:31:49
+État MCU: CRITICAL
+MSE MCU: 0.0926
+
+ RECOVERY MONITORING
+   Alerte reçue pendant monitoring
+
+==================================================
+ ALERTE MCU DETECTEE - OBC State: RECOVERY_MONITORING
+==================================================
+
+01:31:52
+État MCU: CRITICAL
+MSE MCU: 0.0926
+
+ RECOVERY MONITORING
+   Alerte reçue pendant monitoring
+
+==================================================
+ ALERTE MCU DETECTEE - OBC State: RECOVERY_MONITORING
+==================================================
+
+01:31:55
+État MCU: CRITICAL
+MSE MCU: 0.0923
+
+ RECOVERY MONITORING
+   Alerte reçue pendant monitoring
+
+==================================================
+ ALERTE MCU DETECTEE - OBC State: RECOVERY_MONITORING
+==================================================
+
+01:31:59
+État MCU: CRITICAL
+MSE MCU: 0.0926
+
+ RECOVERY MONITORING
+   Alerte reçue pendant monitoring
+
+==================================================
+ ALERTE MCU DETECTEE - OBC State: RECOVERY_MONITORING
+==================================================
+
+01:32:02
+État MCU: CRITICAL
+MSE MCU: 0.0880
+
+ RECOVERY MONITORING
+   Alerte reçue pendant monitoring
+
+==================================================
+ ALERTE MCU DETECTEE - OBC State: RECOVERY_MONITORING
+==================================================
+
+01:32:05
+État MCU: CRITICAL
+MSE MCU: 0.0882
+
+ RECOVERY MONITORING
+   Alerte reçue pendant monitoring
+
+==================================================
+ ALERTE MCU DETECTEE - OBC State: RECOVERY_MONITORING
+==================================================
+
+01:32:09
+État MCU: CRITICAL
+MSE MCU: 0.0839
+
+ RECOVERY MONITORING
+   Alerte reçue pendant monitoring
+
+==================================================
+ ALERTE MCU DETECTEE - OBC State: RECOVERY_MONITORING
+==================================================
+
+01:32:12
+État MCU: CRITICAL
+MSE MCU: 0.0841
+
+ RECOVERY MONITORING
+   Alerte reçue pendant monitoring
+
+==================================================
+ ALERTE MCU DETECTEE - OBC State: RECOVERY_MONITORING
+==================================================
+
+01:32:16
+État MCU: CRITICAL
+MSE MCU: 0.0797
+
+ RECOVERY MONITORING
+   Alerte reçue pendant monitoring
+
+==================================================
+ ALERTE MCU DETECTEE - OBC State: RECOVERY_MONITORING
+==================================================
+
+01:32:19
+État MCU: CRITICAL
+MSE MCU: 0.0844
+
+ RECOVERY MONITORING
+   Alerte reçue pendant monitoring
+
+==================================================
+ ALERTE MCU DETECTEE - OBC State: RECOVERY_MONITORING
+==================================================
+
+01:32:22
+État MCU: CRITICAL
+MSE MCU: 0.0806
+
+ RECOVERY MONITORING
+   Alerte reçue pendant monitoring
+
+==================================================
+ ALERTE MCU DETECTEE - OBC State: RECOVERY_MONITORING
+==================================================
+
+01:32:26
+État MCU: CRITICAL
+MSE MCU: 0.0801
+
+ RECOVERY MONITORING
+   Alerte reçue pendant monitoring
+
+==================================================
+ ALERTE MCU DETECTEE - OBC State: RECOVERY_MONITORING
+==================================================
+
+01:32:29
+État MCU: CRITICAL
+MSE MCU: 0.0801
+
+ RECOVERY MONITORING
+   Alerte reçue pendant monitoring
+
+==================================================
+ ALERTE MCU DETECTEE - OBC State: RECOVERY_MONITORING
+==================================================
+
+01:32:32
+État MCU: CRITICAL
+MSE MCU: 0.0795
+
+ RECOVERY MONITORING
+   Alerte reçue pendant monitoring
+
+==================================================
+ ALERTE MCU DETECTEE - OBC State: RECOVERY_MONITORING
+==================================================
+
+01:32:36
+État MCU: CRITICAL
+MSE MCU: 0.0746
+
+ RECOVERY MONITORING
+   Alerte reçue pendant monitoring
+
+==================================================
+ ALERTE MCU DETECTEE - OBC State: RECOVERY_MONITORING
+==================================================
+
+01:32:39
+État MCU: CRITICAL
+MSE MCU: 0.0701
+
+ RECOVERY MONITORING
+   Alerte reçue pendant monitoring
+
+==================================================
+ ALERTE MCU DETECTEE - OBC State: RECOVERY_MONITORING
+==================================================
+
+01:32:43
+État MCU: CRITICAL
+MSE MCU: 0.0750
+
+ RECOVERY MONITORING
+   Alerte reçue pendant monitoring
+
+==================================================
+ ALERTE MCU DETECTEE - OBC State: RECOVERY_MONITORING
+==================================================
+
+01:32:46
+État MCU: CRITICAL
+MSE MCU: 0.0711
+
+ RECOVERY MONITORING
+   Alerte reçue pendant monitoring
+
+==================================================
+ ALERTE MCU DETECTEE - OBC State: RECOVERY_MONITORING
+==================================================
+
+01:32:49
+État MCU: CRITICAL
+MSE MCU: 0.0757
+
+ RECOVERY MONITORING
+   Alerte reçue pendant monitoring
+
+==================================================
+ ALERTE MCU DETECTEE - OBC State: RECOVERY_MONITORING
+==================================================
+
+01:32:53
+État MCU: CRITICAL
+MSE MCU: 0.0804
+
+ RECOVERY MONITORING
+   Alerte reçue pendant monitoring
+
+==================================================
+ ALERTE MCU DETECTEE - OBC State: RECOVERY_MONITORING
+==================================================
+
+01:32:56
+État MCU: CRITICAL
+MSE MCU: 0.0847
+
+ RECOVERY MONITORING
+   Alerte reçue pendant monitoring
+
+==================================================
+ ALERTE MCU DETECTEE - OBC State: RECOVERY_MONITORING
+==================================================
+
+01:32:59
+État MCU: CRITICAL
+MSE MCU: 0.0844
+
+ RECOVERY MONITORING
+   Alerte reçue pendant monitoring
+
+==================================================
+ ALERTE MCU DETECTEE - OBC State: RECOVERY_MONITORING
+==================================================
+
+01:33:03
+État MCU: CRITICAL
+MSE MCU: 0.0886
+
+ RECOVERY MONITORING
+   Alerte reçue pendant monitoring
+
+==================================================
+ ALERTE MCU DETECTEE - OBC State: RECOVERY_MONITORING
+==================================================
+
+01:33:06
+État MCU: CRITICAL
+MSE MCU: 0.0803
+
+ RECOVERY MONITORING
+   Alerte reçue pendant monitoring
+
+==================================================
+ ALERTE MCU DETECTEE - OBC State: RECOVERY_MONITORING
+==================================================
+
+01:33:09
+État MCU: CRITICAL
+MSE MCU: 0.0848
+
+ RECOVERY MONITORING
+   Alerte reçue pendant monitoring
+
+==================================================
+ ALERTE MCU DETECTEE - OBC State: RECOVERY_MONITORING
+==================================================
+
+01:33:13
+État MCU: CRITICAL
+MSE MCU: 0.0806
+
+ RECOVERY MONITORING
+   Alerte reçue pendant monitoring
+
+==================================================
+ ALERTE MCU DETECTEE - OBC State: RECOVERY_MONITORING
+==================================================
+
+01:33:16
+État MCU: CRITICAL
+MSE MCU: 0.0807
+
+ RECOVERY MONITORING
+   Alerte reçue pendant monitoring
+
+==================================================
+ ALERTE MCU DETECTEE - OBC State: RECOVERY_MONITORING
+==================================================
+
+01:33:20
+État MCU: CRITICAL
+MSE MCU: 0.0849
+
+ RECOVERY MONITORING
+   Alerte reçue pendant monitoring
+
+==================================================
+ ALERTE MCU DETECTEE - OBC State: RECOVERY_MONITORING
+==================================================
+
+01:33:23
+État MCU: CRITICAL
+MSE MCU: 0.0889
+
+ RECOVERY MONITORING
+   Alerte reçue pendant monitoring
+
+==================================================
+ ALERTE MCU DETECTEE - OBC State: RECOVERY_MONITORING
+==================================================
+
+01:33:26
+État MCU: CRITICAL
+MSE MCU: 0.0845
+
+ RECOVERY MONITORING
+   Alerte reçue pendant monitoring
+
+==================================================
+ ALERTE MCU DETECTEE - OBC State: RECOVERY_MONITORING
+==================================================
+
+01:33:30
+État MCU: CRITICAL
+MSE MCU: 0.0887
+
+ RECOVERY MONITORING
+   Alerte reçue pendant monitoring
+
+==================================================
+ ALERTE MCU DETECTEE - OBC State: RECOVERY_MONITORING
+==================================================
+
+01:33:33
+État MCU: CRITICAL
+MSE MCU: 0.0882
+
+ RECOVERY MONITORING
+   Alerte reçue pendant monitoring
+
+==================================================
+ ALERTE MCU DETECTEE - OBC State: RECOVERY_MONITORING
+==================================================
+
+01:33:36
+État MCU: CRITICAL
+MSE MCU: 0.0884
+
+ RECOVERY MONITORING
+   Alerte reçue pendant monitoring
+
+==================================================
+ ALERTE MCU DETECTEE - OBC State: RECOVERY_MONITORING
+==================================================
+
+01:33:40
+État MCU: CRITICAL
+MSE MCU: 0.0880
+
+ RECOVERY MONITORING
+   Alerte reçue pendant monitoring
+
+==================================================
+ ALERTE MCU DETECTEE - OBC State: RECOVERY_MONITORING
+==================================================
+
+01:33:43
+État MCU: CRITICAL
+MSE MCU: 0.0834
+
+ RECOVERY MONITORING
+   Alerte reçue pendant monitoring
+
+==================================================
+ ALERTE MCU DETECTEE - OBC State: RECOVERY_MONITORING
+==================================================
+
+01:33:47
+État MCU: CRITICAL
+MSE MCU: 0.0876
+
+ RECOVERY MONITORING
+   Alerte reçue pendant monitoring
+
+==================================================
+ ALERTE MCU DETECTEE - OBC State: RECOVERY_MONITORING
+==================================================
+
+01:33:50
+État MCU: CRITICAL
+MSE MCU: 0.0834
+
+ RECOVERY MONITORING
+   Alerte reçue pendant monitoring
+
+==================================================
+ ALERTE MCU DETECTEE - OBC State: RECOVERY_MONITORING
+==================================================
+
+01:33:53
+État MCU: CRITICAL
+MSE MCU: 0.0744
+
+ RECOVERY MONITORING
+   Alerte reçue pendant monitoring
+
+==================================================
+ ALERTE MCU DETECTEE - OBC State: RECOVERY_MONITORING
+==================================================
+
+01:33:57
+État MCU: CRITICAL
+MSE MCU: 0.0747
+
+ RECOVERY MONITORING
+   Alerte reçue pendant monitoring
+
+==================================================
+ ALERTE MCU DETECTEE - OBC State: RECOVERY_MONITORING
+==================================================
+
+01:34:00
+État MCU: CRITICAL
+MSE MCU: 0.0745
+
+ RECOVERY MONITORING
+   Alerte reçue pendant monitoring
+
+==================================================
+ ALERTE MCU DETECTEE - OBC State: RECOVERY_MONITORING
+==================================================
+
+01:34:03
+État MCU: CRITICAL
+MSE MCU: 0.0704
+
+ RECOVERY MONITORING
+   Alerte reçue pendant monitoring
+
+==================================================
+ ALERTE MCU DETECTEE - OBC State: RECOVERY_MONITORING
+==================================================
+
+01:34:07
+État MCU: CRITICAL
+MSE MCU: 0.0705
+
+ RECOVERY MONITORING
+   Alerte reçue pendant monitoring
+
+==================================================
+ ALERTE MCU DETECTEE - OBC State: RECOVERY_MONITORING
+==================================================
+
+01:34:10
+État MCU: CRITICAL
+MSE MCU: 0.0749
+
+ RECOVERY MONITORING
+   Alerte reçue pendant monitoring
+
+==================================================
+ ALERTE MCU DETECTEE - OBC State: RECOVERY_MONITORING
+==================================================
+
+01:34:14
+État MCU: CRITICAL
+MSE MCU: 0.0750
+
+ RECOVERY MONITORING
+   Alerte reçue pendant monitoring
+
+==================================================
+ ALERTE MCU DETECTEE - OBC State: RECOVERY_MONITORING
+==================================================
+
+01:34:17
+État MCU: CRITICAL
+MSE MCU: 0.0849
+
+ RECOVERY MONITORING
+   Alerte reçue pendant monitoring
+
+==================================================
+ ALERTE MCU DETECTEE - OBC State: RECOVERY_MONITORING
+==================================================
+
+01:34:20
+État MCU: CRITICAL
+MSE MCU: 0.0893
+
+ RECOVERY MONITORING
+   Alerte reçue pendant monitoring
+
+==================================================
+ ALERTE MCU DETECTEE - OBC State: RECOVERY_MONITORING
+==================================================
+
+01:34:24
+État MCU: CRITICAL
+MSE MCU: 0.0940
+
+ RECOVERY MONITORING
+   Alerte reçue pendant monitoring
+
+==================================================
+ ALERTE MCU DETECTEE - OBC State: RECOVERY_MONITORING
+==================================================
+
+01:34:27
+État MCU: CRITICAL
+MSE MCU: 0.0900
+
+ RECOVERY MONITORING
+   Alerte reçue pendant monitoring
+
+==================================================
+ ALERTE MCU DETECTEE - OBC State: RECOVERY_MONITORING
+==================================================
+
+01:34:30
+État MCU: CRITICAL
+MSE MCU: 0.0902
+
+ RECOVERY MONITORING
+   Alerte reçue pendant monitoring
+
+==================================================
+ ALERTE MCU DETECTEE - OBC State: RECOVERY_MONITORING
+==================================================
+
+01:34:34
+État MCU: CRITICAL
+MSE MCU: 0.0852
+
+ RECOVERY MONITORING
+   Alerte reçue pendant monitoring
+
+==================================================
+ ALERTE MCU DETECTEE - OBC State: RECOVERY_MONITORING
+==================================================
+
+01:34:37
+État MCU: CRITICAL
+MSE MCU: 0.0760
+
+ RECOVERY MONITORING
+   Alerte reçue pendant monitoring
+
+==================================================
+ ALERTE MCU DETECTEE - OBC State: RECOVERY_MONITORING
+==================================================
+
+01:34:41
+État MCU: CRITICAL
+MSE MCU: 0.0808
+
+ RECOVERY MONITORING
+   Alerte reçue pendant monitoring
+
+==================================================
+ ALERTE MCU DETECTEE - OBC State: RECOVERY_MONITORING
+==================================================
+
+01:34:44
+État MCU: CRITICAL
+MSE MCU: 0.0808
+
+ RECOVERY MONITORING
+   Alerte reçue pendant monitoring
+
+==================================================
+ ALERTE MCU DETECTEE - OBC State: RECOVERY_MONITORING
+==================================================
+
+01:34:47
+État MCU: CRITICAL
+MSE MCU: 0.0807
+
+ RECOVERY MONITORING
+   Alerte reçue pendant monitoring
+
+==================================================
+ ALERTE MCU DETECTEE - OBC State: RECOVERY_MONITORING
+==================================================
+
+01:34:51
+État MCU: CRITICAL
+MSE MCU: 0.0808
+
+ RECOVERY MONITORING
+   Alerte reçue pendant monitoring
+
+==================================================
+ ALERTE MCU DETECTEE - OBC State: RECOVERY_MONITORING
+==================================================
+
+01:34:54
+État MCU: CRITICAL
+MSE MCU: 0.0896
+
+ RECOVERY MONITORING
+   Alerte reçue pendant monitoring
+
+==================================================
+ ALERTE MCU DETECTEE - OBC State: RECOVERY_MONITORING
+==================================================
+
+01:34:57
+État MCU: CRITICAL
+MSE MCU: 0.0848
+
+ RECOVERY MONITORING
+   Alerte reçue pendant monitoring
+
+==================================================
+ ALERTE MCU DETECTEE - OBC State: RECOVERY_MONITORING
+==================================================
+
+01:35:01
+État MCU: CRITICAL
+MSE MCU: 0.0888
+
+ RECOVERY MONITORING
+   Alerte reçue pendant monitoring
+
+==================================================
+ ALERTE MCU DETECTEE - OBC State: RECOVERY_MONITORING
+==================================================
+
+01:35:04
+État MCU: CRITICAL
+MSE MCU: 0.0893
+
+ RECOVERY MONITORING
+   Alerte reçue pendant monitoring
+
+==================================================
+ ALERTE MCU DETECTEE - OBC State: RECOVERY_MONITORING
+==================================================
+
+01:35:07
+État MCU: CRITICAL
+MSE MCU: 0.0894
+
+ RECOVERY MONITORING
+   Alerte reçue pendant monitoring
+
+==================================================
+ ALERTE MCU DETECTEE - OBC State: RECOVERY_MONITORING
+==================================================
+
+01:35:11
+État MCU: CRITICAL
+MSE MCU: 0.0901
+
+ RECOVERY MONITORING
+   Alerte reçue pendant monitoring
+
+==================================================
+ ALERTE MCU DETECTEE - OBC State: RECOVERY_MONITORING
+==================================================
+
+01:35:14
+État MCU: CRITICAL
+MSE MCU: 0.0858
+
+ RECOVERY MONITORING
+   Alerte reçue pendant monitoring
+
+==================================================
+ ALERTE MCU DETECTEE - OBC State: RECOVERY_MONITORING
+==================================================
+
+01:35:18
+État MCU: CRITICAL
+MSE MCU: 0.0857
+
+ RECOVERY MONITORING
+   Alerte reçue pendant monitoring
+
+==================================================
+ ALERTE MCU DETECTEE - OBC State: RECOVERY_MONITORING
+==================================================
+
+01:35:21
+État MCU: CRITICAL
+MSE MCU: 0.0813
+
+ RECOVERY MONITORING
+   Alerte reçue pendant monitoring
+
+==================================================
+ ALERTE MCU DETECTEE - OBC State: RECOVERY_MONITORING
+==================================================
+
+01:35:24
+État MCU: CRITICAL
+MSE MCU: 0.0805
+
+ RECOVERY MONITORING
+   Alerte reçue pendant monitoring
+
+==================================================
+ ALERTE MCU DETECTEE - OBC State: RECOVERY_MONITORING
+==================================================
+
+01:35:28
+État MCU: CRITICAL
+MSE MCU: 0.0760
+
+ RECOVERY MONITORING
+   Alerte reçue pendant monitoring
+
+==================================================
+ ALERTE MCU DETECTEE - OBC State: RECOVERY_MONITORING
+==================================================
+
+01:35:31
+État MCU: CRITICAL
+MSE MCU: 0.0805
+
+ RECOVERY MONITORING
+   Alerte reçue pendant monitoring
+
+==================================================
+ ALERTE MCU DETECTEE - OBC State: RECOVERY_MONITORING
+==================================================
+
+01:35:34
+État MCU: CRITICAL
+MSE MCU: 0.0806
+
+ RECOVERY MONITORING
+   Alerte reçue pendant monitoring
+
+==================================================
+ ALERTE MCU DETECTEE - OBC State: RECOVERY_MONITORING
+==================================================
+
+01:35:38
+État MCU: CRITICAL
+MSE MCU: 0.0800
+
+ RECOVERY MONITORING
+   Alerte reçue pendant monitoring
+
+==================================================
+ ALERTE MCU DETECTEE - OBC State: RECOVERY_MONITORING
+==================================================
+
+01:35:41
+État MCU: CRITICAL
+MSE MCU: 0.0764
+
+ RECOVERY MONITORING
+   Alerte reçue pendant monitoring
+
+==================================================
+ ALERTE MCU DETECTEE - OBC State: RECOVERY_MONITORING
+==================================================
+
+01:35:45
+État MCU: CRITICAL
+MSE MCU: 0.0715
+
+ RECOVERY MONITORING
+   Alerte reçue pendant monitoring
+
+==================================================
+ ALERTE MCU DETECTEE - OBC State: RECOVERY_MONITORING
+==================================================
+
+01:35:48
+État MCU: CRITICAL
+MSE MCU: 0.0670
+
+ RECOVERY MONITORING
+   Alerte reçue pendant monitoring
+
+==================================================
+ ALERTE MCU DETECTEE - OBC State: RECOVERY_MONITORING
+==================================================
+
+01:35:51
+État MCU: CRITICAL
+MSE MCU: 0.0673
+
+ RECOVERY MONITORING
+   Alerte reçue pendant monitoring
+
+==================================================
+ ALERTE MCU DETECTEE - OBC State: RECOVERY_MONITORING
+==================================================
+
+01:35:55
+État MCU: CRITICAL
+MSE MCU: 0.0717
+
+ RECOVERY MONITORING
+   Alerte reçue pendant monitoring
+
+==================================================
+ ALERTE MCU DETECTEE - OBC State: RECOVERY_MONITORING
+==================================================
+
+01:35:58
+État MCU: CRITICAL
+MSE MCU: 0.0757
+
+ RECOVERY MONITORING
+   Alerte reçue pendant monitoring
+
+==================================================
+ ALERTE MCU DETECTEE - OBC State: RECOVERY_MONITORING
+==================================================
+
+01:36:01
+État MCU: CRITICAL
+MSE MCU: 0.0756
+
+ RECOVERY MONITORING
+   Alerte reçue pendant monitoring
+
+==================================================
+ ALERTE MCU DETECTEE - OBC State: RECOVERY_MONITORING
+==================================================
+
+01:36:05
+État MCU: CRITICAL
+MSE MCU: 0.0759
+
+ RECOVERY MONITORING
+   Alerte reçue pendant monitoring
+
+==================================================
+ ALERTE MCU DETECTEE - OBC State: RECOVERY_MONITORING
+==================================================
+
+01:36:08
+État MCU: CRITICAL
+MSE MCU: 0.0753
+
+ RECOVERY MONITORING
+   Alerte reçue pendant monitoring
+
+==================================================
+ ALERTE MCU DETECTEE - OBC State: RECOVERY_MONITORING
+==================================================
+
+01:36:12
+État MCU: CRITICAL
+MSE MCU: 0.0713
+
+ RECOVERY MONITORING
+   Alerte reçue pendant monitoring
+
+==================================================
+ ALERTE MCU DETECTEE - OBC State: RECOVERY_MONITORING
+==================================================
+
+01:36:15
+État MCU: CRITICAL
+MSE MCU: 0.0717
+
+ RECOVERY MONITORING
+   Alerte reçue pendant monitoring
+
+==================================================
+ ALERTE MCU DETECTEE - OBC State: RECOVERY_MONITORING
+==================================================
+
+01:36:18
+État MCU: CRITICAL
+MSE MCU: 0.0807
+
+ RECOVERY MONITORING
+   Alerte reçue pendant monitoring
+
+==================================================
+ ALERTE MCU DETECTEE - OBC State: RECOVERY_MONITORING
+==================================================
+
+01:36:22
+État MCU: CRITICAL
+MSE MCU: 0.0847
+
+ RECOVERY MONITORING
+   Alerte reçue pendant monitoring
+
+==================================================
+ ALERTE MCU DETECTEE - OBC State: RECOVERY_MONITORING
+==================================================
+
+01:36:25
+État MCU: CRITICAL
+MSE MCU: 0.0807
+
+ RECOVERY MONITORING
+   Alerte reçue pendant monitoring
+
+==================================================
+ ALERTE MCU DETECTEE - OBC State: RECOVERY_MONITORING
+==================================================
+
+01:36:28
+État MCU: CRITICAL
+MSE MCU: 0.0809
+
+ RECOVERY MONITORING
+   Alerte reçue pendant monitoring
+
+==================================================
+ ALERTE MCU DETECTEE - OBC State: RECOVERY_MONITORING
+==================================================
+
+01:36:32
+État MCU: CRITICAL
+MSE MCU: 0.0810
+
+ RECOVERY MONITORING
+   Alerte reçue pendant monitoring
+
+==================================================
+ ALERTE MCU DETECTEE - OBC State: RECOVERY_MONITORING
+==================================================
+
+01:36:35
+État MCU: CRITICAL
+MSE MCU: 0.0761
+
+ RECOVERY MONITORING
+   Alerte reçue pendant monitoring
+
+==================================================
+ ALERTE MCU DETECTEE - OBC State: RECOVERY_MONITORING
+==================================================
+
+01:36:38
+État MCU: CRITICAL
+MSE MCU: 0.0718
+
+ RECOVERY MONITORING
+   Alerte reçue pendant monitoring
+
+==================================================
+ ALERTE MCU DETECTEE - OBC State: RECOVERY_MONITORING
+==================================================
+
+01:36:42
+État MCU: CRITICAL
+MSE MCU: 0.0716
+
+ RECOVERY MONITORING
+   Alerte reçue pendant monitoring
+
+==================================================
+ ALERTE MCU DETECTEE - OBC State: RECOVERY_MONITORING
+==================================================
+
+01:36:45
+État MCU: CRITICAL
+MSE MCU: 0.0718
+
+ RECOVERY MONITORING
+   Alerte reçue pendant monitoring
+
+==================================================
+ ALERTE MCU DETECTEE - OBC State: RECOVERY_MONITORING
+==================================================
+
+01:36:49
+État MCU: CRITICAL
+MSE MCU: 0.0756
+
+ RECOVERY MONITORING
+   Alerte reçue pendant monitoring
+
+==================================================
+ ALERTE MCU DETECTEE - OBC State: RECOVERY_MONITORING
+==================================================
+
+01:36:52
+État MCU: CRITICAL
+MSE MCU: 0.0763
+
+ RECOVERY MONITORING
+   Alerte reçue pendant monitoring
+
+==================================================
+ ALERTE MCU DETECTEE - OBC State: RECOVERY_MONITORING
+==================================================
+
+01:36:55
+État MCU: CRITICAL
+MSE MCU: 0.0803
+
+ RECOVERY MONITORING
+   Alerte reçue pendant monitoring
+
+==================================================
+ ALERTE MCU DETECTEE - OBC State: RECOVERY_MONITORING
+==================================================
+
+01:36:59
+État MCU: CRITICAL
+MSE MCU: 0.0848
+
+ RECOVERY MONITORING
+   Alerte reçue pendant monitoring
+
+==================================================
+ ALERTE MCU DETECTEE - OBC State: RECOVERY_MONITORING
+==================================================
+
+01:37:02
+État MCU: CRITICAL
+MSE MCU: 0.0888
+
+ RECOVERY MONITORING
+   Alerte reçue pendant monitoring
+
+==================================================
+ ALERTE MCU DETECTEE - OBC State: RECOVERY_MONITORING
+==================================================
+
+01:37:05
+État MCU: CRITICAL
+MSE MCU: 0.0850
+
+ RECOVERY MONITORING
+   Alerte reçue pendant monitoring
+
+==================================================
+ ALERTE MCU DETECTEE - OBC State: RECOVERY_MONITORING
+==================================================
+
+01:37:09
+État MCU: CRITICAL
+MSE MCU: 0.0807
+
+ RECOVERY MONITORING
+   Alerte reçue pendant monitoring
+
+==================================================
+ ALERTE MCU DETECTEE - OBC State: RECOVERY_MONITORING
+==================================================
+
+01:37:12
+État MCU: CRITICAL
+MSE MCU: 0.0762
+
+ RECOVERY MONITORING
+   Alerte reçue pendant monitoring
+
+==================================================
+ ALERTE MCU DETECTEE - OBC State: RECOVERY_MONITORING
+==================================================
+
+01:37:16
+État MCU: CRITICAL
+MSE MCU: 0.0807
+
+ RECOVERY MONITORING
+   Alerte reçue pendant monitoring
+
+==================================================
+ ALERTE MCU DETECTEE - OBC State: RECOVERY_MONITORING
+==================================================
+
+01:37:19
+État MCU: CRITICAL
+
+
+ Arrêt demandé par l'utilisateur
+
+======================================================================
+ ARRET DU SYSTEME OBC
+======================================================================
+  Modèle RL sauvegardé: models/obc_rl_model.pkl
+    Modèle RL sauvegardé
+    Port série fermé
+
+ STATISTIQUES FINALES:
+   Durée: 552.5s
+   Messages: 1379
+   Alertes: 132
+   Confirmées: 0 (0.0%)
+
+ STATISTIQUES RL:
+   Suggestions utilisées: 0
+   États appris: 0
+   Expériences: 0
+
+ ÉTAT OBC FINAL: RECOVERY_MONITORING
+
+======================================================================
+ SYSTEME OBC ARRETE
+======================================================================
+>>> 
